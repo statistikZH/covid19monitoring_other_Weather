@@ -11,8 +11,11 @@ library(reshape)
 
 ################################
 # Preliminary Code subject to review, Results to be viewed with caution!! 
+
+#get keyfile with units and variables
+climvars<-read.table("climate_vars_recodings.csv", sep=",", fileEncoding = "UTF-8", header=T)
+
 # Download data
-climvars<-read.table("climate_vars.csv", sep=",", fileEncoding = "UTF-8", header=T)
 urlfile="https://data.geo.admin.ch/ch.meteoschweiz.klima/nbcn-tageswerte/VQEA34.csv"
 
 ################################
@@ -30,6 +33,24 @@ smaweather<-melt(smaweather,
 
 
 smaweather<-merge(smaweather, climvars, all.x=T)
+
+
+weatherzh<-data.frame(date=as.POSIXct(paste(smaweather$date, "00:00:00", sep=" ")),
+                       value=smaweather$value,
+                       topic="Sonstiges",
+                       variable_short=smaweather$variable_short,
+                       variable_long=smaweather$variable_long,
+                       location="SMA Zürich Fluntern",
+                       unit=smaweather$unit
+                       source="intervista Tracking-panel",
+                       update="täglich",
+                       public="ja",
+                       description="https://github.com/statistikZH/covid19monitoring_mobility_intervista")
+
+
+
+
+
 smaweather$date=as.POSIXct(paste(smaweather$date, "00:00:00", sep=" "))
 smaweather$topic="andere" 
 smaweather$location="SMA Zürich Fluntern"
