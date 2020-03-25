@@ -62,3 +62,4 @@ smaweather$public="ja"
 
 # export result
 write.table(smaweather, "./Other_Weather.csv", sep=",", fileEncoding="UTF-8", row.names = F)
+
