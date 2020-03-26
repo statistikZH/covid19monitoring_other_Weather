@@ -1,0 +1,1 @@
+Simple Script to transform the daily weather parameters from meteoschweiz into the specified format. At the moment, some Information in the source (snowfall etc) is discarded as being less relevant for the topic. Additionally, at the moment only SMA Zürich Fluntern is extracted, the other stations are left out.  
