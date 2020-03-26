@@ -41,24 +41,13 @@ weatherzh<-data.frame(date=as.POSIXct(paste(smaweather$date, "00:00:00", sep=" "
                        variable_short=smaweather$variable_short,
                        variable_long=smaweather$variable_long,
                        location="SMA Zürich Fluntern",
-                       unit=smaweather$unit
-                       source="intervista Tracking-panel",
+                       unit=smaweather$unit,
+                       source="meteoschweiz",
                        update="täglich",
                        public="ja",
-                       description="https://github.com/statistikZH/covid19monitoring_mobility_intervista")
+                       description="https://github.com/statistikZH/covid19monitoring_other_Weather")
 
 
-
-
-
-smaweather$date=as.POSIXct(paste(smaweather$date, "00:00:00", sep=" "))
-smaweather$topic="andere" 
-smaweather$location="SMA Zürich Fluntern"
-smaweather$origin="meteoschweiz"
-smaweather$update="daily"
-smaweather$public="ja"
-
-################################
 
 # export result
-write.table(smaweather, "./Other_Weather.csv", sep=",", fileEncoding="UTF-8", row.names = F)
+write.table(weatherzh, "Other_Weather.csv", sep=",", fileEncoding="UTF-8", row.names = F)
