@@ -50,4 +50,9 @@ weatherzh<-data.frame(date=as.POSIXct(paste(smaweather$date, "00:00:00", sep=" "
 
 
 # export result
+<<<<<<< HEAD
 write.table(weatherzh, "Other_Weather.csv", sep=",", fileEncoding="UTF-8", row.names = F)
+=======
+write.table(smaweather, "./Other_Weather.csv", sep=",", fileEncoding="UTF-8", row.names = F)
+
+>>>>>>> a15fb11ea0da386df39311d3b65b89886356e080
