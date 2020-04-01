@@ -51,3 +51,5 @@ weatherzh<-data.frame(date=as.POSIXct(paste(smaweather$date, "00:00:00", sep=" "
 # export result
 
 write.table(weatherzh, "Other_Weather.csv", sep=",", fileEncoding="UTF-8", row.names = F)
+
+range(weatherzh$date)
