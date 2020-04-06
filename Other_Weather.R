@@ -1,8 +1,6 @@
 #  Other_Weather.R
 
 # Import libraries
-require(tidyquant)
-require(xts)
 require(anytime)
 library (readr)
 library (lattice)
