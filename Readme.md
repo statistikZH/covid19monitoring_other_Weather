@@ -6,9 +6,10 @@ Dieses Skript bringt die täglichen Wetterparameter ([Quelle: meteoschweiz](http
 
 -
 
-**Weitere Informationen**<br>
+**Weitere Informationen** <br>
 [Projektseite: "Gesellschafsmonitoring COVID19"](https://github.com/statistikZH/covid19monitoring) <br>
-[Datenbezug](https://www.web.statistik.zh.ch/covid19_indikatoren_uebersicht/#/)
+[Datenbezug](https://www.web.statistik.zh.ch/covid19_indikatoren_uebersicht/#/) <br>
+[Visualisierung](https://www.web.statistik.zh.ch/cms_vis/covid19_indikatoren/) <br>
 
 
 
