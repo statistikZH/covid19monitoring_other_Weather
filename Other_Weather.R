@@ -22,18 +22,19 @@ urlfile="https://data.geo.admin.ch/ch.meteoschweiz.klima/nbcn-tageswerte/VQEA34.
 weather<-data.frame(read_delim(url(urlfile), delim=";", skip = 2))
 weather$date<-anydate(weather$time)
 smaweather<-subset(weather, stn=="SMA")
-
+smaweather$rre150d0<-as.numeric(smaweather$rre150d0)
+smaweather$rre150d0<-ifelse(is.na(smaweather$rre150d0), 0, smaweather$rre150d0)
 # Variablen in denen Missings mit "-" gekennszeichnet wurden, sind vorderhand weggelassen (Schnehöhe etc)
 smaweather<-melt(smaweather, 
                  id.vars = "date", 
-                 measure.vars =c("gre000d0", "prestad0",
+                 measure.vars =c("gre000d0", "prestad0","rre150d0",
                                  "sre000d0", "tre200d0", "tre200dn", "tre200dx", "ure200d0"))    
 
 
 smaweather<-merge(smaweather, climvars, all.x=T)
 
 
-weatherzh<-data.frame(date=as.POSIXct(paste(smaweather$date, "00:00:00", sep=" ")),
+weatherzh<-droplevels(data.frame(date=as.POSIXct(paste(smaweather$date, "00:00:00", sep=" ")),
                        value=smaweather$value,
                        topic="Sonstiges",
                        variable_short=smaweather$variable_short,
@@ -43,7 +44,7 @@ weatherzh<-data.frame(date=as.POSIXct(paste(smaweather$date, "00:00:00", sep=" "
                        source="meteoschweiz",
                        update="täglich",
                        public="ja",
-                       description="https://github.com/statistikZH/covid19monitoring_other_Weather")
+                       description="https://github.com/statistikZH/covid19monitoring_other_Weather"))
 
 
 # export result
