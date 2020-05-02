@@ -22,7 +22,7 @@ urlfile="https://data.geo.admin.ch/ch.meteoschweiz.klima/nbcn-tageswerte/VQEA34.
 weather<-data.frame(read_delim(url(urlfile), delim=";", skip = 2))
 weather$date<-anydate(weather$time)
 smaweather<-subset(weather, stn=="SMA")
-smaweather<-subset(smaweather, date>"2020-02-26")
+#smaweather<-subset(smaweather, date>"2020-02-26")
 smaweather$rre150d0<-as.numeric(smaweather$rre150d0)
 smaweather$rre150d0<-ifelse(is.na(smaweather$rre150d0), 0, smaweather$rre150d0)
 # Variablen in denen Missings mit "-" gekennszeichnet wurden, sind vorderhand weggelassen (Schnehöhe etc)
