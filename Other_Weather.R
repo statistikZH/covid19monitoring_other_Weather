@@ -14,15 +14,13 @@ library(reshape)
 climvars<-read.table("climate_vars_recodings.csv", sep=",", fileEncoding = "UTF-8", header=T)
 
 # Download data
-urlfile="https://data.geo.admin.ch/ch.meteoschweiz.klima/nbcn-tageswerte/VQEA34.csv"
+urlfile="https://data.geo.admin.ch/ch.meteoschweiz.klima/nbcn-tageswerte/nbcn-daily_SMA_current.csv"
 
 ################################
 
 # Format data according to data structure specification
-weather<-data.frame(read_delim(url(urlfile), delim=";", skip = 2))
-weather$date<-anydate(weather$time)
-smaweather<-subset(weather, stn=="SMA")
-#smaweather<-subset(smaweather, date>"2020-02-26")
+smaweather<-data.frame(read_delim(url(urlfile), delim=";"))
+smaweather$date<-anydate(weather$date)
 smaweather$rre150d0<-as.numeric(smaweather$rre150d0)
 smaweather$rre150d0<-ifelse(is.na(smaweather$rre150d0), 0, smaweather$rre150d0)
 # Variablen in denen Missings mit "-" gekennszeichnet wurden, sind vorderhand weggelassen (Schnehöhe etc)
