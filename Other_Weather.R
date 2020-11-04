@@ -20,7 +20,7 @@ urlfile="https://data.geo.admin.ch/ch.meteoschweiz.klima/nbcn-tageswerte/nbcn-da
 
 # Format data according to data structure specification
 smaweather<-data.frame(read_delim(url(urlfile), delim=";"))
-smaweather$date<-anydate(weather$date)
+smaweather$date<-anydate(smaweather$date)
 smaweather$rre150d0<-as.numeric(smaweather$rre150d0)
 smaweather$rre150d0<-ifelse(is.na(smaweather$rre150d0), 0, smaweather$rre150d0)
 # Variablen in denen Missings mit "-" gekennszeichnet wurden, sind vorderhand weggelassen (Schnehöhe etc)
