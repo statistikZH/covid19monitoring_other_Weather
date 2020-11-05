@@ -1,12 +1,6 @@
 #  Other_Weather.R
-
 # Import libraries
-require(anytime)
-library (readr)
-library (lattice)
-library(chron)
-library(reshape)
-
+library(reshape2)
 ################################
 # Preliminary Code subject to review, Results to be viewed with caution!! 
 
@@ -15,12 +9,10 @@ climvars<-read.table("climate_vars_recodings.csv", sep=",", fileEncoding = "UTF-
 
 # Download data
 urlfile="https://data.geo.admin.ch/ch.meteoschweiz.klima/nbcn-tageswerte/nbcn-daily_SMA_current.csv"
-
 ################################
-
 # Format data according to data structure specification
-smaweather<-data.frame(read_delim(url(urlfile), delim=";"))
-smaweather$date<-anydate(smaweather$date)
+smaweather<-data.frame(read.table(url(urlfile), sep=";", header=T))
+smaweather$date<-as.Date(as.character(smaweather$date), format="%Y%m%d")
 smaweather$rre150d0<-as.numeric(smaweather$rre150d0)
 smaweather$rre150d0<-ifelse(is.na(smaweather$rre150d0), 0, smaweather$rre150d0)
 # Variablen in denen Missings mit "-" gekennszeichnet wurden, sind vorderhand weggelassen (Schnehöhe etc)
@@ -31,9 +23,7 @@ smaweather<-melt(smaweather,
 
 
 smaweather<-merge(smaweather, climvars, all.x=T)
-
-
-weatherzh<-droplevels(data.frame(date=as.POSIXct(paste(smaweather$date, "00:00:00", sep=" ")),
+weatherzh<-droplevels(data.frame(date=smaweather$date,
                        value=smaweather$value,
                        topic="Sonstiges",
                        variable_short=smaweather$variable_short,
