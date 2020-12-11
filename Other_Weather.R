@@ -2,8 +2,6 @@
 # Import libraries
 library(reshape2)
 ################################
-# Preliminary Code subject to review, Results to be viewed with caution!! 
-
 #get keyfile with units and variables
 climvars<-read.table("climate_vars_recodings.csv", sep=",", fileEncoding = "UTF-8", header=T)
 
