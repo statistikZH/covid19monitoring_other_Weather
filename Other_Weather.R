@@ -17,7 +17,7 @@ smaweather$rre150d0<-ifelse(is.na(smaweather$rre150d0), 0, smaweather$rre150d0)
 smaweather<-melt(smaweather, 
                  id.vars = "date", 
                  measure.vars =c("gre000d0", "prestad0","rre150d0",
-                                 "sre000d0", "tre200d0", "tre200dn", "tre200dx", "ure200d0"))    
+                                 "sre000d0", "tre200d0", "tre200dn", "tre200dx", "ure200d0",  "hto000d0"))    
 
 
 smaweather<-merge(smaweather, climvars, all.x=T)
