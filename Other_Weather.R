@@ -52,6 +52,8 @@ weatherzh<-droplevels(data.frame(date=smaweather$date,
 #Cut off deep past
 weatherzh<-subset(weatherzh, date>"2017-12-31")
 
+weatherzh$value<-as.numeric(weatherzh$value)
+
 write.table(weatherzh, "Other_Weather.csv", sep=",", fileEncoding="UTF-8", row.names = F)
 
 range(weatherzh$date)
